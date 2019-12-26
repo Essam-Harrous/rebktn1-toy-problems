@@ -12,20 +12,21 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
+
+ var allAnagrams = function(string) {
   // Your code here.
   var result = [];
   var check = {}
 
   let helper = (letterIndex, str = '')=> {
     for(var i = 0; i < string.length; i++) {
-      if(check[string[i]] == undefined) {
-        check[string[i]] = string[i];
+      if(check[string[i] + i] == undefined) {
+        check[string[i] + i] = string[i];
         if(letterIndex < string.length - 1) helper(letterIndex + 1, str + string[i]);
         else {
           result.push(str + string[i]);
         }
-        delete check[string[i]]
+        delete check[string[i] + i]
       }
     }
   }
@@ -33,3 +34,4 @@ var allAnagrams = function(string) {
   return result;
 
 };
+
