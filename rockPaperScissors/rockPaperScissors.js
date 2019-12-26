@@ -21,12 +21,7 @@
 var rockPaperScissors = function (n) {
   // TODO: your solution here
   result = [];
-  var obj = {
-    1: 'R',
-    2: 'P',
-    3: 'S'
-  }
-
+  var obj = {1: 'R', 2: 'P', 3: 'S'}
   let helper = (pNum, str = '')=> {
     for(var i = 1; i <= 3; i++) {
       if(pNum < n) helper(pNum + 1, str + obj[i]);
@@ -35,6 +30,4 @@ var rockPaperScissors = function (n) {
   }
   helper(1);
   return result;
-
-
 };
