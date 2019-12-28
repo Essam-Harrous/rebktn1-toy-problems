@@ -7,3 +7,29 @@ evenOccurrence([ "cat", "dog", "dig", "cat" ]) // "cat"
 evenOccurrence([[1,2,3], [1,2], [1,2,3]]) // [1,2,3]
 evenOccurrence([{a: 1, b: 2}, {a:1, b:3}, {a:1, b:2}]) // {a:1, b:2}
 */
+
+var evenOccurrence = (arr) => {
+  obj = {};
+  for(var i = 0; i < arr.length; i++) {
+    if(typeof arr[i] != 'object' || Array.isArray(arr[i])) {
+      if(obj[arr[i]] == undefined) obj[arr[i]] = 1;
+      else obj[arr[i]] += 1;
+    }else {
+      var stringified = JSON.stringify(arr[i]);
+      if(obj[stringified] == undefined) obj[stringified] = 1;
+      else obj[stringified] += 1;
+    }
+  }
+
+  objValues = Object.values(obj);
+  for(var i = 0; i < objValues.length; i++) {
+    if(objValues[i] % 2 == 0) {
+      var result = Object.keys(obj)[i];
+      if(typeof arr[0] == 'string') return result;
+      else if(typeof arr[0] == 'number') return parseInt(result);
+      else if(Array.isArray(arr[0])) return result.split(',');
+      else return JSON.parse(result)
+    }
+  }
+  return null;
+}
