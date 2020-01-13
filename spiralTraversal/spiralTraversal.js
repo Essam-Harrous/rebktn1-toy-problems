@@ -42,3 +42,39 @@ spiralTraversal([[ 1 ], [ 2 ], [ 3 ], [ 4 ]])	// [ 1, 2, 3, 4 ]
 
 spiralTraversal([[ 1, 2, 3, 4, 5, 6, 7 ]]) // [ 1, 2, 3, 4, 5, 6, 7 ]
 */
+
+
+
+spiralTraversal = (matrix, result = [], limit = {matrixStart: 0, matrixEnd: matrix.length, arrayStart: 0, arrayEnd: matrix[0].length})=> {
+  for(var i = limit.matrixStart; i < limit.matrixEnd; i++) {
+    if(i == limit.matrixStart) {
+      for(var j = limit.arrayStart; j < limit.arrayEnd; j++) {
+        result.push(matrix[i][j])
+      }
+    }else if(i == limit.matrixEnd - 1) {
+      for(var j = limit.arrayEnd - 1; j >= limit.arrayStart; j--) {
+        result.push(matrix[i][j]);
+      }
+    }else {
+      result.push(matrix[i][limit.arrayEnd - 1])
+    }
+  }
+
+  for(var i = limit.matrixEnd - 2; i >= limit.matrixStart + 1; i--) {
+    if(matrix[i][limit.arrayEnd - 1] != matrix[i][limit.arrayStart]) {
+      result.push(matrix[i][limit.arrayStart])
+    }
+  }
+  
+  if(matrix.length * matrix[0].length === result.length) {
+    return result
+  }
+
+  limit.matrixStart += 1;
+  limit.matrixEnd -= 1;
+  limit.arrayStart += 1;
+  limit.arrayEnd -= 1;
+
+  return spiralTraversal(matrix, result, limit)
+
+}
