@@ -34,6 +34,15 @@ var Tree = function(value) {
   this.children = [];
 };
 
+Tree.prototype.countLeaves = function(count = 0) {
+    var result = 1
+    for(var i = 0; i < this.children.length; i++) {
+      current = this.children[i].countLeaves( count + 1)
+      if(current > result) result = current;
+    }
+    return count > result? count: result
+}
+
 /**
  * You shouldn't need to change anything below here, but feel free to look.
  */
