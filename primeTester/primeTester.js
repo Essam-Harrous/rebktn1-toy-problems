@@ -9,4 +9,8 @@ primeTester(1) // false
 
 */
 
-function primeTester(n) {}
+function primeTester(n, t = n - 1) {
+  if(n == 1) return true;
+  if(n % t == 0) return false;
+  return primeTester(n, t - 1)
+}
